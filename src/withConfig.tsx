@@ -13,7 +13,7 @@ import theme from './theme';
 
 
 const store = configureStore({
-    tasks: []
+    employees: []
 });
 
 export const withConfig = (

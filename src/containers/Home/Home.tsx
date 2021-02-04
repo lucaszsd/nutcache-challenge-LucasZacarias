@@ -6,20 +6,20 @@ import {
 } from '@material-ui/core';
 
 import { useStyles, Props } from './types';
-import { AppState, Task } from '../../store/configureStore';
+import { AppState, Employee } from '../../store/configureStore';
 
 
 import BasicCard from '../../components/BasicCard';
-import { actions } from '../../reducers/tasks';
+import { actions } from '../../reducers/employees';
 
 const Home = (props: Props): JSX.Element => {
     const classes = useStyles();
     const dispatch = useDispatch();
     
-    const tasks: Task[] = useSelector((state: AppState) => state.tasks);
+    const employees: Employee[] = useSelector((state: AppState) => state.employees);
 
     const handleAddNewTaskButton = (): void => {
-        dispatch(actions.addTask({
+        dispatch(actions.addEmployees({
             name: 'Super task',
         }));        
     };
@@ -27,7 +27,7 @@ const Home = (props: Props): JSX.Element => {
     return (
         <div className={classes.root}>
             <Grid container={true} spacing={4} direction="row">
-                {tasks.map((task: Task, idx: number) => {
+                {employees.map((employee: Employee, idx: number) => {
                     return (
                         <Grid key={idx} item={true} xs={3}>
                             <BasicCard />

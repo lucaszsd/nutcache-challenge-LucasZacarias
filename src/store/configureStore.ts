@@ -15,8 +15,12 @@ export interface Task {
     name: string;
 }
 
+export interface Employee {
+    name: string;
+}
+
 export interface AppState {
-    tasks: Task[];
+    employees: Employee[];
 }
 
 export const configureStore = (initialState: AppState): Store => {    
