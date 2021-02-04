@@ -8,28 +8,26 @@ import {
 import { useStyles, Props } from './types';
 
 const BasicCard = (props: Props): JSX.Element => {
-    const classes = useStyles();
-    const bull = <span className={classes.bullet}>•</span>;
+    const classes = useStyles(); 
     return (
         <Card>
             <CardContent>
-                <Typography className={classes.title} color="textSecondary">
-                    Word of the Someday
+                <Typography variant="h6" component="h2">
+                    Lucas Zacarias de Sousa Duarte
                 </Typography>
-                <Typography variant="h5" component="h2">
-                    be{bull}nev{bull}o{bull}lent
+                <Typography>
+                   Team One
                 </Typography>
-                <Typography className={classes.pos} color="textSecondary">
-                    adjective
+                <Typography>
+                    lzsd@cin.ufpe.br
                 </Typography>
-                <Typography component="p">
-                    well meaning and kindly.
-                    <br />
-                    {'"a benevolent smile"'}
+                <Typography color="textSecondary" component="p">
+                    05/02/2021
                 </Typography>
             </CardContent>
             <CardActions>
-                <Button size="small">Learn More</Button>
+                <Button size="small">Delete</Button>
+                <Button size="small">Edit</Button>
             </CardActions>
         </Card>
     );

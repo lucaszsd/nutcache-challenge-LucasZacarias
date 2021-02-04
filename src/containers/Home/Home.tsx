@@ -29,7 +29,7 @@ const Home = (props: Props): JSX.Element => {
             <Grid container={true} spacing={4} direction="row">
                 {tasks.map((task: Task, idx: number) => {
                     return (
-                        <Grid key={idx} item={true} xs={6}>
+                        <Grid key={idx} item={true} xs={3}>
                             <BasicCard />
                         </Grid>
                     );
@@ -42,7 +42,7 @@ const Home = (props: Props): JSX.Element => {
                         color="primary"
                         onClick={handleAddNewTaskButton}
                     >
-                        Primary
+                        Add employee
                     </Button>
                 </Grid>
             </Grid>

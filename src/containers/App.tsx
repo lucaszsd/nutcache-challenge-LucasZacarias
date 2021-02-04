@@ -34,7 +34,7 @@ const App = (props: Props): JSX.Element => {
                     >
                         <div>ExampleApp</div>
                     </Typography>
-                    <Button color="inherit">Login</Button>
+                    <Button color="inherit">Add employee</Button>
                 </Toolbar>
             </AppBar>
             <Home />

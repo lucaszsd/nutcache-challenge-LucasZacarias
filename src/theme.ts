@@ -4,20 +4,22 @@ import { createMuiTheme } from '@material-ui/core/styles';
 const primaryColor = deepPurple;
 
 export default createMuiTheme({
+    // background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
     palette: {
-        type: 'dark',
+        type: 'light',
         primary: {
-            dark: primaryColor[300],
-            light: red.A200,
-            main: primaryColor[400],
+            dark: '#3E9BA1',
+            light: '#B3F5E0',
+            main: '#7CE0D3',
         },
         secondary: {
-            dark: red.A700,
-            light: '#ffffff',
-            main: '#ffffff',
-        },
+            dark: '#AF1B47',
+            light: '#FB8E86',
+            main: '#f4364c',
+        }, 
     },
     typography: {
         fontFamily: 'Lato, sans-serif',
     },
+    
 });
