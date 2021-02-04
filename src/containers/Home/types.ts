@@ -7,4 +7,7 @@ export const useStyles = makeStyles(theme => ({
         paddingTop: 50,
         paddingLeft: 10,
     },
+    card: {
+        padding: theme.spacing(4),
+    }
 }));

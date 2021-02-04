@@ -6,11 +6,12 @@ import {
 } from '@material-ui/core';
 
 import { useStyles, Props } from './types';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 const BasicCard = (props: Props): JSX.Element => {
     const classes = useStyles(); 
     return (
-        <Card>
+        <Card className = {classes.card}>
             <CardContent>
                 <Typography variant="h6" component="h2">
                     Lucas Zacarias de Sousa Duarte
@@ -26,8 +27,20 @@ const BasicCard = (props: Props): JSX.Element => {
                 </Typography>
             </CardContent>
             <CardActions>
-                <Button size="small">Delete</Button>
-                <Button size="small">Edit</Button>
+                <Button
+                startIcon={<DeleteIcon />}
+                variant="contained"
+                color="secondary"
+                size="small">
+                    Delete
+                </Button>
+                <Button 
+                startIcon={<DeleteIcon />}
+                variant="contained"
+                color="primary"
+                size="small">
+                    Edit
+                </Button>
             </CardActions>
         </Card>
     );

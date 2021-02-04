@@ -27,12 +27,12 @@ const App = (props: Props): JSX.Element => {
                         <MenuIcon />
                     </IconButton>
                     <Typography
-                        component="div"
-                        variant="h6"
-                        color="inherit"
-                        className={classes.flex}
+                    component="div"
+                    variant="h6"
+                    color="inherit"
+                    className={classes.flex}
                     >
-                        <div>ExampleApp</div>
+                        <div>Nutcache People Management</div>
                     </Typography>
                     <Button color="inherit">Add employee</Button>
                 </Toolbar>
