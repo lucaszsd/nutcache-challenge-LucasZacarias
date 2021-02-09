@@ -10,6 +10,8 @@ import {
 import { Formik, Form, FormikProps } from 'formik'
 import * as Yup from 'yup'
 
+import { useSelector, useDispatch } from 'react-redux';
+import { actions } from '../../reducers/employees';
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
@@ -33,9 +35,14 @@ const useStyles = makeStyles((theme: Theme) =>
 
 interface ISignUpForm {
     name: string
-    password: string
-    confirmPassword: string
-    email: string
+    birthdate: string,
+    gender: string,
+    email: string,
+    CPF: string,
+    startDate: string,
+    team: string,
+    password: string,
+    confirmPassword: string 
 }
 
 interface IFormStatus {
@@ -64,16 +71,40 @@ const formStatusProps: IFormStatusProps = {
 
 const AddEmployeeForm: React.FunctionComponent = () => {
     const classes = useStyles()
+    const dispatch = useDispatch();
+    
     const [displayFormStatus, setDisplayFormStatus] = useState(false)
     const [formStatus, setFormStatus] = useState<IFormStatus>({
         message: '',
         type: '',
     })
 
+
     const createNewUser = async (data: ISignUpForm, resetForm: Function) => {
+
+        
+
         try {
+
+
+           
+            dispatch(actions.addEmployees({
+                name: data.name ,
+                birthDate: data.birthdate ,
+                gender: data.gender,
+                email: data.email,
+                CPF: data.CPF,
+                startDate: data.startDate,
+                team: data.team,
+            }))
+
+
+
             // API call integration will be here. Handle success / error response accordingly.
             if (data) {
+
+               
+ 
                 setFormStatus(formStatusProps.success)
                 resetForm({})
             }
@@ -97,9 +128,15 @@ const AddEmployeeForm: React.FunctionComponent = () => {
             <Formik
                 initialValues={{
                     name: '',
+                    birthdate: '',
+                    gender: '',
+                    email: '',
+                    CPF: '',
+                    startDate: '',
+                    team: '',
                     password: '',
                     confirmPassword: '',
-                    email: '',
+                   
                 }}
                 onSubmit={(values: ISignUpForm, actions) => {
                     createNewUser(values, actions.resetForm)
@@ -108,26 +145,17 @@ const AddEmployeeForm: React.FunctionComponent = () => {
                     }, 500)
                 }}
                 validationSchema={Yup.object().shape({
+                    name: Yup.string().required('Por favor insira o nome completo'), 
+                    birthdate: Yup.string().required('Por favor insira a data de nascimento'), 
+                    gender: Yup.string().required('Por favor insira o gênero'),
                     email: Yup.string()
                         .email()
-                        .required('Enter valid email-id'),
-                    name: Yup.string().required('Please enter full name'),
-                    password: Yup.string()
-                        .matches(
-                            /^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*()]).{8,20}\S$/
-                        )
-                        .required(
-                            'Please valid password. One uppercase, one lowercase, one special character and no spaces'
-                        ),
-                    confirmPassword: Yup.string()
-                        .required('Required')
-                        .test(
-                            'password-match',
-                            'Password musth match',
-                            function (value) {
-                                return this.parent.password === value
-                            }
-                        ),
+                        .required('Por favor insira um email válido'), 
+                    CPF: Yup.string().required('Por favor insira um CPF válido'), 
+                    startDate: Yup.string().required('Por favor insira uma data válida'), 
+                    team: Yup.string().required('Por favor insira um time válido'),
+                    
+                  
                 })}
             >
                 {(props: FormikProps<ISignUpForm>) => {
@@ -141,7 +169,7 @@ const AddEmployeeForm: React.FunctionComponent = () => {
                     } = props
                     return (
                         <Form>
-                            <h1 className={classes.title}>Sign up</h1>
+                            <h1 className={classes.title}>Adicionar Funcionário</h1>
                             <Grid
                                 container
                                 justify="space-around"
@@ -158,13 +186,13 @@ const AddEmployeeForm: React.FunctionComponent = () => {
                                     <TextField
                                         name="name"
                                         id="name"
-                                        label="Full Name"
+                                        label="Nome Completo"
                                         value={values.name}
                                         type="text"
                                         helperText={
                                             errors.name && touched.name
                                                 ? errors.name
-                                                : 'Enter your full name.'
+                                                : 'Insira seu nome completo .'
                                         }
                                         error={
                                             errors.name && touched.name
@@ -175,7 +203,192 @@ const AddEmployeeForm: React.FunctionComponent = () => {
                                         onBlur={handleBlur}
                                     />
                                 </Grid>
+
+
+
                                 <Grid
+                                    item
+                                    lg={10}
+                                    md={10}
+                                    sm={10}
+                                    xs={10}
+                                    className={classes.textField}
+                                >
+                                    <TextField
+                                        name="birthdate"
+                                        id="birthdate"
+                                        label="Data de Nascimento"
+                                        value={values.birthdate}
+                                        type="text"
+                                        helperText={
+                                            errors.birthdate && touched.birthdate
+                                                ? errors.birthdate
+                                                : 'Insira sua data de nascimento.'
+                                        }
+                                        error={
+                                            errors.birthdate && touched.birthdate
+                                                ? true
+                                                : false
+                                        }
+                                        onChange={handleChange}
+                                        onBlur={handleBlur}
+                                    />
+                                </Grid>
+
+                                <Grid
+                                    item
+                                    lg={10}
+                                    md={10}
+                                    sm={10}
+                                    xs={10}
+                                    className={classes.textField}
+                                >
+                                    <TextField
+                                        name="gender"
+                                        id="gender"
+                                        label="Genero"
+                                        value={values.gender}
+                                        type="text"
+                                        helperText={
+                                            errors.gender && touched.gender
+                                                ? errors.gender
+                                                : 'Insira seu genero.'
+                                        }
+                                        error={
+                                            errors.gender && touched.gender
+                                                ? true
+                                                : false
+                                        }
+                                        onChange={handleChange}
+                                        onBlur={handleBlur}
+                                    />
+                                </Grid>
+
+                                <Grid
+                                    item
+                                    lg={10}
+                                    md={10}
+                                    sm={10}
+                                    xs={10}
+                                    className={classes.textField}
+                                >
+                                    <TextField
+                                        name="email"
+                                        id="email"
+                                        label="Email"
+                                        value={values.email}
+                                        type="email"
+                                        helperText={
+                                            errors.email && touched.email
+                                                ? errors.email
+                                                : 'Insira o seu email'
+                                        }
+                                        error={
+                                            errors.email && touched.email
+                                                ? true
+                                                : false
+                                        }
+                                        onChange={handleChange}
+                                        onBlur={handleBlur}
+                                    />
+                                </Grid>
+
+                                <Grid
+                                    item
+                                    lg={10}
+                                    md={10}
+                                    sm={10}
+                                    xs={10}
+                                    className={classes.textField}
+                                >
+                                    <TextField
+                                        name="CPF"
+                                        id="CPF"
+                                        label="CPF"
+                                        value={values.CPF}
+                                        type="text"
+                                        helperText={
+                                            errors.CPF && touched.CPF
+                                                ? errors.CPF
+                                                : 'Insira seu CPF'
+                                        }
+                                        error={
+                                            errors.CPF && touched.CPF
+                                                ? true
+                                                : false
+                                        }
+                                        onChange={handleChange}
+                                        onBlur={handleBlur}
+                                    />
+                                </Grid>
+
+                               
+                                <Grid
+                                    item
+                                    lg={10}
+                                    md={10}
+                                    sm={10}
+                                    xs={10}
+                                    className={classes.textField}
+                                >
+                                    <TextField
+                                        name="startDate"
+                                        id="startDate"
+                                        label="Data de Início"
+                                        value={values.startDate}
+                                        type="text"
+                                        helperText={
+                                            errors.startDate && touched.startDate
+                                                ? errors.startDate
+                                                : 'Insira a data que começou na empresa.'
+                                        }
+                                        error={
+                                            errors.startDate && touched.startDate
+                                                ? true
+                                                : false
+                                        }
+                                        onChange={handleChange}
+                                        onBlur={handleBlur}
+                                    />
+                                </Grid>
+
+                                <Grid
+                                    item
+                                    lg={10}
+                                    md={10}
+                                    sm={10}
+                                    xs={10}
+                                    className={classes.textField}
+                                >
+                                    <TextField
+                                        name="team"
+                                        id="team"
+                                        label="Time"
+                                        value={values.team}
+                                        type="text"
+                                        helperText={
+                                            errors.team && touched.team
+                                                ? errors.team
+                                                : 'Insira o time.'
+                                        }
+                                        error={
+                                            errors.team && touched.team
+                                                ? true
+                                                : false
+                                        }
+                                        onChange={handleChange}
+                                        onBlur={handleBlur}
+                                    />
+                                </Grid>
+
+                                
+                                  
+
+                                
+
+
+
+                                {/* <Grid
                                     item
                                     lg={10}
                                     md={10}
@@ -232,35 +445,8 @@ const AddEmployeeForm: React.FunctionComponent = () => {
                                         onChange={handleChange}
                                         onBlur={handleBlur}
                                     />
-                                </Grid>
-                                <Grid
-                                    item
-                                    lg={10}
-                                    md={10}
-                                    sm={10}
-                                    xs={10}
-                                    className={classes.textField}
-                                >
-                                    <TextField
-                                        name="email"
-                                        id="email"
-                                        label="Email-id"
-                                        value={values.email}
-                                        type="email"
-                                        helperText={
-                                            errors.email && touched.email
-                                                ? errors.email
-                                                : 'Enter email-id'
-                                        }
-                                        error={
-                                            errors.email && touched.email
-                                                ? true
-                                                : false
-                                        }
-                                        onChange={handleChange}
-                                        onBlur={handleBlur}
-                                    />
-                                </Grid>
+                                </Grid> */}
+                               
                                 <Grid
                                     item
                                     lg={10}
