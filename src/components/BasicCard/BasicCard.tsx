@@ -5,16 +5,26 @@ import {
     CardContent, Typography 
 } from '@material-ui/core';
 
+import { useSelector, useDispatch } from 'react-redux';
 import { useStyles, Props } from './types';
 import DeleteIcon from '@material-ui/icons/Delete';
 
+import { actions } from '../../reducers/employees';
 const BasicCard = (props: Props): JSX.Element => {
     const classes = useStyles(); 
+    const dispatch = useDispatch()
+ 
+    
+    const handleDeleteUser = (): void => {
+        dispatch(actions.deleteEmployee('000.000.000-00'));        
+    };
+ 
+
     return (
         <Card className = {classes.card}>
             <CardContent>
                 <Typography variant="h6" component="h2">
-                    Lucas Zacarias de Sousa Duarte
+                    {props.name}
                 </Typography>
                 <Typography>
                    Team One
@@ -28,6 +38,7 @@ const BasicCard = (props: Props): JSX.Element => {
             </CardContent>
             <CardActions>
                 <Button
+                onClick = {handleDeleteUser}
                 startIcon={<DeleteIcon />}
                 variant="contained"
                 color="secondary"

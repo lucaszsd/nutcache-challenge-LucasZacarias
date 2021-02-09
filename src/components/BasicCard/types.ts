@@ -1,6 +1,8 @@
 import { makeStyles } from '@material-ui/core';
 
-export interface Props {}
+export interface Props {
+    name: string;
+}
 
 export const useStyles = makeStyles(theme => ({
     card: {

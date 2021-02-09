@@ -17,6 +17,12 @@ export interface Task {
 
 export interface Employee {
     name: string;
+    birthDate: string;
+    gender: string;
+    email: string;
+    CPF: string;
+    startDate: string;
+    team: string;
 }
 
 export interface AppState {
