@@ -1,21 +1,27 @@
+//Importações Externas
 import React from 'react';
 
 import { withConfig } from '../withConfig';
 import { useStyles, Props } from './types';
 
 import {
-    AppBar, Button,
+    AppBar, 
     IconButton, Toolbar,
     Typography
 }  from '@material-ui/core';
 
 import MenuIcon from '@material-ui/icons/Menu';
-
+import persistor from '../persist' 
+import {PersistGate} from "redux-persist/integration/react"; 
+//Importações Internas
+import AddButton from './Home/AddButton'
 import Home from './Home';
 
 const App = (props: Props): JSX.Element => {
     const classes = useStyles();
     return (
+        <PersistGate loading={null} persistor={persistor}>
+
         <div className={classes.root}>
             <AppBar position="static">
                 <Toolbar>
@@ -23,7 +29,7 @@ const App = (props: Props): JSX.Element => {
                         className={classes.menuButton}
                         color="inherit"
                         aria-label="Menu"
-                    >
+                        >
                         <MenuIcon />
                     </IconButton>
                     <Typography
@@ -34,11 +40,12 @@ const App = (props: Props): JSX.Element => {
                     >
                         <div>Nutcache People Management</div>
                     </Typography>
-                    <Button color="inherit">Add employee</Button>
+                    <AddButton/>
                 </Toolbar>
             </AppBar>
             <Home />
         </div>
+        </PersistGate>
     );
 
 };

@@ -5,7 +5,7 @@ import {
     CardContent, Typography 
 } from '@material-ui/core';
 
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useStyles, Props } from './types';
 import DeleteIcon from '@material-ui/icons/Delete';
 
@@ -18,8 +18,7 @@ const BasicCard = (props: Props): JSX.Element => {
     const handleDeleteUser = (): void => {
         dispatch(actions.deleteEmployee('000.000.000-00'));        
     };
- 
-
+  
     return (
         <Card className = {classes.card}>
             <CardContent>
@@ -27,13 +26,13 @@ const BasicCard = (props: Props): JSX.Element => {
                     {props.name}
                 </Typography>
                 <Typography>
-                   Team One
+                   {props.team}
                 </Typography>
                 <Typography>
-                    lzsd@cin.ufpe.br
+                    {props.email}
                 </Typography>
                 <Typography color="textSecondary" component="p">
-                    05/02/2021
+                    {props.startDate}
                 </Typography>
             </CardContent>
             <CardActions>

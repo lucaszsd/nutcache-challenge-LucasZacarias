@@ -2,6 +2,9 @@ import { makeStyles } from '@material-ui/core';
 
 export interface Props {
     name: string;
+    email: string, 
+    team: string,
+    startDate: string,
 }
 
 export const useStyles = makeStyles(theme => ({

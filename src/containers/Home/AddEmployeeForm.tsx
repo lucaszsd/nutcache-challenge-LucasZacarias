@@ -1,3 +1,5 @@
+//Importações Externas
+import * as Yup from 'yup'
 import React, { useState } from 'react'
 import {
     Grid,
@@ -8,10 +10,11 @@ import {
     Theme,
 } from '@material-ui/core'
 import { Formik, Form, FormikProps } from 'formik'
-import * as Yup from 'yup'
 
-import { useSelector, useDispatch } from 'react-redux';
+//Importações Internas
+import { useDispatch } from 'react-redux';
 import { actions } from '../../reducers/employees';
+
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
@@ -81,13 +84,9 @@ const AddEmployeeForm: React.FunctionComponent = () => {
 
 
     const createNewUser = async (data: ISignUpForm, resetForm: Function) => {
-
-        
-
+ 
         try {
-
-
-           
+ 
             dispatch(actions.addEmployees({
                 name: data.name ,
                 birthDate: data.birthdate ,
@@ -97,9 +96,7 @@ const AddEmployeeForm: React.FunctionComponent = () => {
                 startDate: data.startDate,
                 team: data.team,
             }))
-
-
-
+ 
             // API call integration will be here. Handle success / error response accordingly.
             if (data) {
 

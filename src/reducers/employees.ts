@@ -45,7 +45,7 @@ export default (state: Employee[] = initialState, action: TaskActionType): Emplo
         case TasksActionTypes.AddEmployee:
             return state.concat([action.payload!]);
         case TasksActionTypes.DeleteEmployee:
-            return state.filter(element => element.CPF == action.payload?.CPF)
+            return state.filter(element => element.CPF === action.payload?.CPF)
         default:
             return state;
     }
