@@ -5,6 +5,7 @@ export interface Props {
     email: string, 
     team: string,
     startDate: string,
+    CPF: string,
 }
 
 export const useStyles = makeStyles(theme => ({

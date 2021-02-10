@@ -20,7 +20,7 @@ const Home = (props: Props): JSX.Element => {
                 {employees.map((employee: Employee, idx: number) => { 
                     return (
                         <Grid key={idx} item={true} xs={3}>
-                            <BasicCard name = {employee.name} team = {employee.team} email = {employee.email} startDate = {employee.startDate} />
+                            <BasicCard name = {employee.name} team = {employee.team} email = {employee.email} startDate = {employee.startDate} CPF = {employee.CPF} />
                         </Grid>
                     );
                 })}

@@ -16,7 +16,7 @@ const BasicCard = (props: Props): JSX.Element => {
  
     
     const handleDeleteUser = (): void => {
-        dispatch(actions.deleteEmployee('000.000.000-00'));        
+        dispatch(actions.deleteEmployee(props.CPF));        
     };
   
     return (
