@@ -96,10 +96,10 @@ function BasicCard({ employee, deleteEmployee }) {
           </Typography>
         </CardContent>
         <CardActions>
-          {/* <IconButton onClick={handleOpen}>
+          <IconButton onClick={handleOpen}>
             <DeleteIcon color="error" />
-          </IconButton> */}
-          <DeleteButton  employeeName = {employee.name} employeeId = {employee.id}/>
+          </IconButton>
+          {/* <DeleteButton  employeeName = {employee.name} employeeId = {employee.id}/> */}
           <EditButton  employeeName = {employee.name} employeeId = {employee.id}/>
         </CardActions>
       </Card>

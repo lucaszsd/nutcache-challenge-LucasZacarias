@@ -14,3 +14,4 @@ export const registerApi = async(email, name, uid, code) => {
   } 
   return await api.post('/register', data, config)
 }
+ 

@@ -45,6 +45,8 @@ export const useStyles = makeStyles(theme => ({
     menuContent: {
         marginRight: theme.spacing(4),
         marginLeft: theme.spacing(4),
+        justifyContent: 'space-between'
         // backgroundColor: 'red'
-    }
+    },
+   
 }));

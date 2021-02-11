@@ -1,6 +1,6 @@
 //Importações Externas
 import React, { Fragment }from "react";
- 
+import { motion } from "framer-motion";
 import Box from "@material-ui/core/Box"; 
 import MenuIcon from '@material-ui/icons/Menu';
 import {
@@ -25,27 +25,66 @@ function NavBar(props) {
   
   const Employee = useSelector((state) => state.Employee.lists);
   const lastAddEmployee = Employee[0]
+
+  const container = {
+    hidden: { opacity: 1, scale: 0 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        delayChildren: 0.3,
+        staggerChildren: 0.2
+      }
+    }
+  }
+    
+  const item = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0, 
+      opacity: 1
+    }, 
+  }
+
+
   return ( 
+          <motion.div
+            className="container"
+            variants={container}
+            initial="hidden"
+            animate="visible"
+          >
       <AppBar position="static">
         <Toolbar className = {classes.menuContent}>
-            <Typography
-            component="div"
-            variant="h6"
-            color="inherit"
-            className={classes.title}
-            >
-              People Management - Nutcache Brazil 
-            </Typography> 
-            { Employee[0] != null && 
-            <Fragment> 
-              <EditButton employeeName = {lastAddEmployee.name} employeeId = {lastAddEmployee.id} type = {'nav'}/>
-              <DeleteButton employeeName = {lastAddEmployee.name} employeeId = {lastAddEmployee.id} type = {'nav'}/>
-            </Fragment>
-            }
-            <AddButton type = {'nav'}/>
+              <Typography
+              component="div"
+              variant="h6"
+              color="inherit"
+              className={classes.title}
+              >
+                <motion.div className="item" variants={item}>
+                  People Management - Nutcache Brazil 
+                </motion.div>
+              </Typography> 
+         
+               
+              { Employee[0] != null && 
+                <motion.div className="item" variants={item}>
+                  <EditButton employeeName = {lastAddEmployee.name} employeeId = {lastAddEmployee.id} type = {'nav'}/>  
+                </motion.div>
+              }
+              <motion.div className="item" variants={item}>
+                <DeleteButton employeeName = {lastAddEmployee.name} employeeId = {lastAddEmployee.id} type = {'nav'}/>
+              </motion.div>
+          
+              <motion.div className="item" variants={item}>
+                <AddButton type = {'nav'}/>
+              </motion.div>
+            
           
         </Toolbar>
-      </AppBar>
+        </AppBar>
+      </motion.div>
   
   );
 }
