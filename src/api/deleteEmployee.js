@@ -6,6 +6,6 @@ export const deleteEmployeeApi = async(id) => {
     headers: { "Content-Type": "application/json; charset=utf-8" }
   }
   
-  return await api.delete(`/nutemployee${id}`, config)
+  return await api.delete(`/nutemployee/${id}`, config)
 }
  
