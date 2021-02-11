@@ -1,0 +1,9 @@
+const EmployeeActionTypes = {
+  SET_USERNAME: "SET_USERNAME",
+  ADD_EMPLOYEE: "ADD_EMPLOYEE",
+  DELETE_EMPLOYEE: "DELETE_EMPLOYEE",
+  UPDATE_EMPLOYEE: "UPDATE_EMPLOYEE",
+  CHECK_TASK: "CHECK_TASK",
+};
+
+export default EmployeeActionTypes;

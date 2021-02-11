@@ -1,15 +1,35 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Nutcache People Management",
+  "name": "Nutcache People Management Platform",
   "icons": [
     {
-      "src": "favicon.ico",
+      "src": "favicon2.png",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
+    },
+    {
+      "src": "favicon2.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "favicon2.png",
+      "type": "image/png",
+      "sizes": "512x512"
     }
   ],
-  "start_url": ".",
-  "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "start_url": "/",
+  "display": "fullscreen",
+  "theme_color": "#ef8053",
+  "background_color": "#ef8053",
+  "categories": ["time"],
+  "lang": "en-US",
+  "description": "Awesome application that will help you manage your tasks.",
+  "orientation": "any",
+  "serviceworker": {
+    "src": "./serviceworker.js",
+    "scope": "/app",
+    "type": "",
+    "update_via_cache": "none"
+  }
 }
