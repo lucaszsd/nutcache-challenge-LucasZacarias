@@ -6,7 +6,8 @@ import AddIcon from "@material-ui/icons/Add";
 import Button from "@material-ui/core/Button";
 import Backdrop from '@material-ui/core/Backdrop';
 import IconButton from "@material-ui/core/IconButton"; 
-
+import { useHistory } from "react-router-dom";
+import { useSelector } from "react-redux";
 import EditIcon from "@material-ui/icons/Edit";
 //Importações Internas 
 import { useStyles} from './Styles';
@@ -22,43 +23,21 @@ function EditButton(props) {
       setOpen(true);
   }; 
 
+  const history = useHistory()
+  const Employee = useSelector((state) => state.Employee.lists);
+  
+  const lastAddedEmployee = Employee[0]
+  
   const handleClose = () => {
   setOpen(false);
   };
 
-  return (
-    // <Link to="/add">
-    //   {type == 'nav'?
-    //   <Button variant="contained" color="secondary">Adicionar Funcionário</Button>:  
-    //   <Fab color="primary" aria-label="add">
-    //     <AddIcon />
-    //   </Fab>
-    //   }
-    // </Link>
-    <Fragment>
-      <IconButton onClick={editButtonHandler}>
-        <EditIcon color="primary" />
-      </IconButton> 
+  const editButtonHandler = () => {
+    history.push(`/update/${lastAddedEmployee.id}`);
+  };
 
-    <Modal
-        aria-labelledby="transition-modal-title"
-        aria-describedby="transition-modal-description"
-        className={classes.modal}
-        open={open}
-        onClose={handleClose}
-        closeAfterTransition
-        BackdropComponent={Backdrop}
-        BackdropProps={{
-        timeout: 500,
-    }}>  
-        <Fade in={open}>
-            <div className={classes.paper}> 
-                {/* <AddEmployeeForm/>  */}
-                <AddForm/>
-            </div>
-        </Fade> 
-    </Modal> 
-  </Fragment> 
+  return (
+    <Button  variant="contained" color="secondary" onClick = {editButtonHandler}>Editar {Employee[0].name}</Button>  
   );
 
 }
