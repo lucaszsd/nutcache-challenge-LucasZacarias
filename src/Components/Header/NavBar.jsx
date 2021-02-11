@@ -24,36 +24,26 @@ function NavBar(props) {
   const isHome = props;
   
   const Employee = useSelector((state) => state.Employee.lists);
-
+  const lastAddEmployee = Employee[0]
   return ( 
       <AppBar position="static">
         <Toolbar className = {classes.menuContent}>
-            {/* <IconButton
-                className={classes.menuButton}
-                color="inherit"
-                aria-label="Menu"
-                >
-                <MenuIcon />
-            </IconButton> */}
             <Typography
             component="div"
             variant="h6"
             color="inherit"
             className={classes.title}
             >
-              <div>People Management - Nutcache Brazil</div>
+              People Management - Nutcache Brazil 
             </Typography> 
             { Employee[0] != null && 
             <Fragment> 
-              <EditButton type = {'nav'}/>
-              <DeleteButton type = {'nav'}/>
+              <EditButton employeeName = {lastAddEmployee.name} employeeId = {lastAddEmployee.id} type = {'nav'}/>
+              <DeleteButton employeeName = {lastAddEmployee.name} employeeId = {lastAddEmployee.id} type = {'nav'}/>
             </Fragment>
             }
             <AddButton type = {'nav'}/>
-           
-            {/* <Box justifyContent="center">
-            <Switch checked={props.darkMode} onChange={changeTheme} inputProps={{ "aria-label": "secondary checkbox" }} />
-          </Box> */}
+          
         </Toolbar>
       </AppBar>
   

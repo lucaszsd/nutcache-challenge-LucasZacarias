@@ -6,12 +6,12 @@ const INITIAL_STATE = {
   username: null,
   lists: [
     {
-      id: uniqid(),
-      listTitle: "Starter List",
-      tasks: [
-        { id: uniqid(), title: "first task", done: false },
-        { id: uniqid(), title: "second task", done: false },
-      ],
+      // id: uniqid(),
+      // listTitle: "Starter List",
+      // tasks: [
+      //   { id: uniqid(), title: "first task", done: false },
+      //   { id: uniqid(), title: "second task", done: false },
+      // ],
     },
   ],
 };
