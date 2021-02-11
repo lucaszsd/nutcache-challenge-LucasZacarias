@@ -1,18 +1,15 @@
 //Importações Externas
-import React from "react";
-import { useSelector } from "react-redux"; 
+import React from "react"; 
+import { Switch, Route } from "react-router-dom";
 import { CSSTransition } from "react-transition-group";
 import { ThemeProvider } from "@material-ui/core/styles";
-import { Switch, Route, Redirect } from "react-router-dom";
 
 //Importações Internas
-import Home from "./Containers/Home/Home";
-import darkTheme from "./themes/dark-theme";
+import Home from "./Containers/Home/Home"; 
+import AddForm from "./Containers/AddForm";
 import lightTheme from "./themes/light-theme";
 import Header from "./Components/Header/Header";
-import AddForm from "./Containers/AddForm";
-import UpdateForm from "./Containers/UpdateForm/UpdateForm";
-import UsernameForm from "./Containers/UsernameForm/UsernameForm";
+import UpdateForm from "./Containers/UpdateForm/UpdateForm"; 
 
 const routes = [
   { path: "/", name: "Home", Component: Home },
@@ -20,30 +17,21 @@ const routes = [
   { path: "/update/:listId", name: "Update", Component: UpdateForm },
 ];
 
-function App() {
-  const username = useSelector((state) => state.Employee.username);
-  const darkMode = useSelector((state) => state.Theme.darkMode); 
+function App() { 
   return (
     <ThemeProvider theme={lightTheme}> 
       <Header />
-      {username ? (
-        <Switch>
-          {routes.map(({ path, Component }) => (
-            <Route key={path} exact path={path}>
-              {({ match }) => (
-                <CSSTransition in={match != null} timeout={300} classNames="page" unmountOnExit>
-                  <Component />
-                </CSSTransition>
-              )}
-            </Route>
-          ))}
-        </Switch>
-      ) : (
-        <Switch>
-          <Route exact path="/register" component={UsernameForm} />
-          <Redirect to="/register" />
-        </Switch>
-      )} 
+      <Switch>
+        {routes.map(({ path, Component }) => (
+          <Route key={path} exact path={path}>
+            {({ match }) => (
+              <CSSTransition in={match != null} timeout={300} classNames="page" unmountOnExit>
+                <Component />
+              </CSSTransition>
+            )}
+          </Route>
+        ))}
+      </Switch>
     </ThemeProvider>
   );
 }

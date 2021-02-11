@@ -29,7 +29,7 @@ function BasicCard({ employee, deleteEmployee }) {
   const classes = useStyles(); 
   
   const editButtonHandler = () => {
-    history.push(`/update/${employee.id}`);
+    history.push(`/update/${employee._id}`);
   };
 
   const [open, setOpen] = React.useState(false);
@@ -43,7 +43,7 @@ function BasicCard({ employee, deleteEmployee }) {
   setOpen(false);
   };
   const deleteButtonHandler = () => {
-    deleteEmployee(employee.id);
+    deleteEmployee(employee._id);
   };
  
   return (
@@ -100,7 +100,7 @@ function BasicCard({ employee, deleteEmployee }) {
             <DeleteIcon color="error" />
           </IconButton>
           {/* <DeleteButton  employeeName = {employee.name} employeeId = {employee.id}/> */}
-          <EditButton  employeeName = {employee.name} employeeId = {employee.id}/>
+          <EditButton  employeeName = {employee.name} employeeId = {employee._id}/>
         </CardActions>
       </Card>
     </Fragment>

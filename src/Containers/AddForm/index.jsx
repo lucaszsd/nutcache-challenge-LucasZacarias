@@ -27,8 +27,7 @@ function AddForm({ addEmployee }) {
   const [startDate, setStartDate] = useState(new Date('2014-08-18T21:11:54'));
   const [team, setTeam] = useState("Mobile");
     
-  const submitHandler = async() => { 
-
+  const submitHandler = async() => {  
      //Criando Objeto local
      const newEmployee = {
       id: uniqid(), 
@@ -43,10 +42,12 @@ function AddForm({ addEmployee }) {
   
     try{
       //Enviar pra API
-      await registerApi(name, birthDate, gender, email, CPF, startDate, team)
-
-      //Adicionando no cache
-      addEmployee(newEmployee); 
+      registerApi(name, birthDate, gender, email, CPF, startDate, team).then(async() =>{
+        
+        //Adicionando no cache
+        addEmployee(newEmployee); 
+      })
+      
     }catch(error){ 
       console.log("Tivemos um erro: " + error.message)
     } 

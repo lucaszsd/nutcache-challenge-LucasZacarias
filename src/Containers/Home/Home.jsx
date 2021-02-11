@@ -7,9 +7,10 @@ import Container from "@material-ui/core/Container";
 
 //Importações Internas
 import { useStyles } from './Styles';
-import { listEmployeesApi } from '../../api/listEmployees';
+import { employeeListApi } from '../../api/employeeList';
 import AddButton from "../../Components/Buttons/AddButton";
 import BasicCard from "../../Components/BarsicCard/BasicCard";
+import { updateEmployeeList } from "../../Redux/Employee/EmployeeActions";
  
 function Home({ history}) {
   const lists = useSelector((state) => state.Employee.lists); 
@@ -33,19 +34,21 @@ function Home({ history}) {
       y: 0,
       opacity: 1
     }
-  }
- 
+  } 
+
   const listEmployees = async() => {
     try{
-      const result = await listEmployeesApi()
-      console.log("RESULT LIST:  " + JSON.stringify(result.data))
+      employeeListApi().then(result => {
+        updateEmployeeList(result.data) 
+      })
     }catch(error){
-      console.log("API ERROR: " + error.messsage)
+      console.log("API ERROR: " + JSON.stringify(error))
     }
   }
 
   useEffect(() => {      
-    // listEmployees()
+    listEmployees()
+    console.log(lists)
   }, [lists]);
 
   return (
@@ -57,13 +60,15 @@ function Home({ history}) {
         animate="visible"> 
           <Container className = {classes.container}>
             <Grid container={true} spacing={4} direction="row">
-              {lists.map((employee) => (
-                <Grid key={employee.id}item={true} md={4}>
+              {lists.map((employee) => {
+                console.log('ID ' + employee._id)
+                return(
+                <Grid key={employee._id}item={true} md={4}>
                     <motion.div  className="item" variants={item}> 
                     <BasicCard employee={employee} history={history} />
                   </motion.div>
                 </Grid>
-              ))}
+              )})}
             </Grid>
             <Grid container={true} spacing={4} direction="row">
               <AddButton /> 

@@ -8,7 +8,7 @@ import rootReducer from "./rootReducer";
 const middleWares = [logger];
 
 const persistConfig = {
-  key: "employeeappdata",
+  key: "employaeeappdata",
   storage,
 };
 

@@ -12,7 +12,7 @@ import { useParams, useHistory, Link } from "react-router-dom";
  
 //Importações Internas
 import { useStyles} from './Styles';
-import { listEmployeesApi} from '../../api/listEmployees';
+// import { listEmployeesApi} from '../../api/listEmployees';
 import { updateEmployee } from "../../Redux/Employee/EmployeeActions";
 
 function UpdateForm({ updateEmployee }) {
@@ -30,17 +30,17 @@ function UpdateForm({ updateEmployee }) {
   const [team, updateTeam] = useState(list.team);
 
 
-  const searchEmployee = async(id) => {
-    try{
-      const result = await listEmployeesApi(listId)
-      console.log("RESULT UNIQUE USER:  " + JSON.stringify(result.data))
-    }catch(error){
-      console.log("API ERROR: " + error.messsage)
-    }
-  }
+  // const searchEmployee = async(id) => {
+  //   try{
+  //     const result = await listEmployeesApi(listId)
+  //     console.log("RESULT UNIQUE USER:  " + JSON.stringify(result.data))
+  //   }catch(error){
+  //     console.log("API ERROR: " + error.messsage)
+  //   }
+  // }
 
   useEffect(() => {      
-    searchEmployee(listId)
+    // searchEmployee(listId)
   }, []);
 
  

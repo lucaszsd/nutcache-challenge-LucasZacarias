@@ -1,4 +1,4 @@
-import { api } from './'
+import { api } from '.'
   
 export const registerApi = async(name, birthDate, gender, email, CPF, startDate, team) => {
 
@@ -7,8 +7,7 @@ export const registerApi = async(name, birthDate, gender, email, CPF, startDate,
   }
  
   const data = {
-    name: name,
-    email: email,
+    name: name, 
     birthDate: birthDate,
     gender: gender,
     email: email,
