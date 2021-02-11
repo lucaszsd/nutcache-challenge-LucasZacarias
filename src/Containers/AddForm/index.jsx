@@ -7,60 +7,28 @@ import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid"; 
 import Button from "@material-ui/core/Button"; 
 import { useHistory } from "react-router-dom";
+import Select from '@material-ui/core/Select';
 import TextField from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/core/styles";
-
+ 
 //Importações Internas
+import { useStyles } from './Styles';
 import { addEmployee } from "../../Redux/Employee/EmployeeActions";
 
-const useStyle = makeStyles({
-  root: {
-    // width: "100%",
-    // marginTop: "1rem",
-    // borderRadius: "0.5rem",
-    // backgroundColor: "white",
-    // display: "flex",
-    // flexDirection: "column",
-    // alignItems: "center",
-    // justifyContent: "center",
-    // backgroundColor: 'red'
-  },
-  form: {
-    width: "100%",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-  },
-  input: {
-    width: 400,
-    margin: "1rem 0",
-  
-  },
-  link: {
-    textDecoration: "none",
-  },
-  button: {
-    margin: "1rem",
-  },
-  flex: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-});
-
 function AddForm({ addEmployee }) {
-  const classes = useStyle(); 
+  const classes = useStyles(); 
   const history = useHistory();
 
   const [name, setName] = useState("");
-  const [birthDate, setBirthDate] = useState("");
-  const [gender, setGender] = useState("");
+  const [birthDate, setBirthDate] = useState(new Date('2014-08-18T21:11:54'));
+  const [gender, setGender] = useState("Fem");
   const [email, setEmail] = useState("");
   const [CPF, setCPF] = useState("");
-  const [startDate, setStartDate] = useState("");
-  const [team, setTeam] = useState("");
+  const [startDate, setStartDate] = useState(new Date('2014-08-18T21:11:54'));
+  const [team, setTeam] = useState("Mobile");
    
+ 
+
   const submitHandler = () => {
     const newEmployee = {
       id: uniqid(), 
@@ -84,10 +52,28 @@ function AddForm({ addEmployee }) {
               <TextField className={classes.input} label="Nome" variant="outlined" value={name} onChange={(e) => setName(e.target.value)} />
             </Grid>
             <Grid item xs={12}>
-              <TextField className={classes.input} label="Data de Nascimento" variant="outlined" value={birthDate} onChange={(e) => setBirthDate(e.target.value)} />
+              <TextField className={classes.input} label="Data de Nascimento" variant="outlined" value={birthDate}  defaultValue="2017-05-24" type="date" onChange={(e) => setBirthDate(e.target.value)} />
             </Grid>
             <Grid item xs={12}>
-              <TextField className={classes.input} label="Genero" variant="outlined" value={gender} onChange={(e) => setGender(e.target.value)} />
+              {/* <TextField className={classes.input} label="Genero" variant="outlined" value={gender} onChange={(e) => setGender(e.target.value)} />
+               */}
+                 <Select
+                  native
+                  label="Genero"
+                  className={classes.input} 
+                  variant="outlined"
+                  value={gender}
+                  onChange={(e) => setGender(e.target.value)}
+                  inputProps={{
+                    name: 'age',
+                    id: 'age-native-simple',
+                  }}
+                >
+                  <option aria-label="Genero" value="" />
+                  <option value={'Fem'}>Masculino</option>
+                  <option value={'Masc'}>Feminino</option>
+                  <option value={'Other'}>Outro</option>
+                </Select>
             </Grid>
             <Grid item xs={12}>
               <TextField className={classes.input} label="Email" variant="outlined" value={email} onChange={(e) => setEmail(e.target.value)} />
@@ -96,10 +82,27 @@ function AddForm({ addEmployee }) {
               <TextField className={classes.input} label="CPF" variant="outlined" value={CPF} onChange={(e) => setCPF(e.target.value)} />
             </Grid>
             <Grid item xs={12}>
-              <TextField className={classes.input} label="Data de Inicio" variant="outlined" value={startDate} onChange={(e) => setStartDate(e.target.value)} />
+              <TextField className={classes.input} label="Data de Inicio" variant="outlined" value={startDate} defaultValue="2017-05-24" type="date" onChange={(e) => setStartDate(e.target.value)} />
             </Grid>
             <Grid item xs={12}>
-              <TextField className={classes.input} label="Time" variant="outlined" value={team} onChange={(e) => setTeam(e.target.value)} />
+              {/* <TextField className={classes.input} label="Time" variant="outlined" value={team} onChange={(e) => setTeam(e.target.value)} /> */}
+              <Select
+                  native
+                  label="Team"
+                  className={classes.input} 
+                  variant="outlined"
+                  value={team}
+                  onChange={(e) => setTeam(e.target.value)}
+                  inputProps={{
+                    name: 'age',
+                    id: 'age-native-simple',
+                  }}
+                >
+                  <option aria-label="Team" value="" />
+                  <option value={'Mobile'}>Mobile</option>
+                  <option value={'Frontend'}>Frontend</option>
+                  <option value={'Backend'}>Backend</option>
+                </Select>
             </Grid>
           </Box>
         </Grid>

@@ -11,6 +11,7 @@ import {
 import { connect } from "react-redux";
 import AddButton from "../Buttons/AddButton";
 
+import Select from '@material-ui/core/Select';
 import { useSelector } from "react-redux";
 import Switch from "@material-ui/core/Switch";
 //Importações Internas
@@ -24,7 +25,7 @@ function NavBar(props) {
   const isHome = props;
   
   const Employee = useSelector((state) => state.Employee.lists);
-  const lastAddEmployee = Employee[0]
+  const lastAddEmployee = Employee[0] != null ? Employee[0] : {}
 
   const container = {
     hidden: { opacity: 1, scale: 0 },
