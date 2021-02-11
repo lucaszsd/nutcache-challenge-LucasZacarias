@@ -46,7 +46,7 @@ function Home({ history}) {
 
   useEffect(() => {      
     // listEmployees()
-  }, []);
+  }, [state.Employee.lists]);
 
   return (
     <main>  
