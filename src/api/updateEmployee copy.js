@@ -16,6 +16,6 @@ export const updateUserApi = async(id, name, birthDate, gender, email, CPF, star
     startDate: startDate,
     team: team
   } 
-  return await api.put(`/nutemployee${id}`, data, config)
+  return await api.put(`/nutemployee/${id}`, data, config)
 }
  
