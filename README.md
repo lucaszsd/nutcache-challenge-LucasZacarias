@@ -36,4 +36,5 @@ To run the project locally.
 ## Tech Stack
 This project was bootstraped with create-react-app and follows the Flux Structure.
 This is using Redux/Redux Persist/Redux Logger for state control
+Material UI for Interface components
  
