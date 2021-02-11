@@ -1,16 +1,21 @@
 import { api } from './'
- 
-
-export const registerApi = async(email, name, uid, code) => {
   
-  config = {
-    // headers: { Authorization: `Bearer ${token}` }
+export const registerApi = async(name, birthDate, gender, email, CPF, startDate, team) => {
+
+  const config = {
+    headers: { "Content-Type": "application/json; charset=utf-8" }
   }
-  data = {
-    email: email,
+ 
+  const data = {
     name: name,
-    firebase_uid: uid,
-    recommended_by: code
+    email: email,
+    birthDate: birthDate,
+    gender: gender,
+    email: email,
+    CPF: CPF,
+    startDate: startDate,
+    team: team
   } 
-  return await api.post('/register', data, config)
+  return await api.post('/nutemployee', data, config)
 }
+ 

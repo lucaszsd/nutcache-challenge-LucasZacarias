@@ -9,10 +9,10 @@ import Button from "@material-ui/core/Button";
 import { useHistory } from "react-router-dom";
 import Select from '@material-ui/core/Select';
 import TextField from "@material-ui/core/TextField";
-import { makeStyles } from "@material-ui/core/styles";
- 
+
 //Importações Internas
 import { useStyles } from './Styles';
+import {registerApi} from '../../api/addEmployee';
 import { addEmployee } from "../../Redux/Employee/EmployeeActions";
 
 function AddForm({ addEmployee }) {
@@ -26,11 +26,11 @@ function AddForm({ addEmployee }) {
   const [CPF, setCPF] = useState("");
   const [startDate, setStartDate] = useState(new Date('2014-08-18T21:11:54'));
   const [team, setTeam] = useState("Mobile");
-   
- 
+    
+  const submitHandler = async() => { 
 
-  const submitHandler = () => {
-    const newEmployee = {
+     //Criando Objeto local
+     const newEmployee = {
       id: uniqid(), 
       name: name,
       birthDate: birthDate,
@@ -39,8 +39,18 @@ function AddForm({ addEmployee }) {
       CPF: CPF,
       startDate: startDate,
       team: team, 
-    };
-    addEmployee(newEmployee);
+    }; 
+  
+    try{
+      //Enviar pra API
+      await registerApi(name, birthDate, gender, email, CPF, startDate, team)
+
+      //Adicionando no cache
+      addEmployee(newEmployee); 
+    }catch(error){ 
+      console.log("Tivemos um erro: " + error.message)
+    } 
+     
     history.push("/");
   }; 
 

@@ -1,13 +1,16 @@
 //Importações Externas
-import React from "react";
+import React, { useEffect } from "react";
+import { motion } from "framer-motion";
 import { useSelector } from "react-redux"; 
 import Grid from '@material-ui/core/Grid';
 import Container from "@material-ui/core/Container"; 
-import { motion } from "framer-motion";
+
 //Importações Internas
-import BasicCard from "../../Components/BarsicCard/BasicCard";
+import { useStyles } from './Styles';
+import { listEmployeesApi } from '../../api/listEmployees';
 import AddButton from "../../Components/Buttons/AddButton";
-import { useStyles } from './Styles'
+import BasicCard from "../../Components/BarsicCard/BasicCard";
+ 
 function Home({ history}) {
   const lists = useSelector((state) => state.Employee.lists); 
   const classes = useStyles(); 
@@ -31,7 +34,19 @@ function Home({ history}) {
       opacity: 1
     }
   }
+ 
+  const listEmployees = async() => {
+    try{
+      const result = await listEmployeesApi()
+      console.log("RESULT LIST:  " + JSON.stringify(result.data))
+    }catch(error){
+      console.log("API ERROR: " + error.messsage)
+    }
+  }
 
+  useEffect(() => {      
+    // listEmployees()
+  }, []);
 
   return (
     <main>  

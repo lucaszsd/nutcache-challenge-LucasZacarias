@@ -2,7 +2,7 @@
 import uniqid from "uniqid";
 import { connect } from "react-redux";
 import Box from "@material-ui/core/Box"; 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import Grid from "@material-ui/core/Grid"; 
 import Button from "@material-ui/core/Button"; 
@@ -11,8 +11,9 @@ import TextField from "@material-ui/core/TextField";
 import { useParams, useHistory, Link } from "react-router-dom";
  
 //Importações Internas
+import { useStyles} from './Styles';
+import { listEmployeesApi} from '../../api/listEmployees';
 import { updateEmployee } from "../../Redux/Employee/EmployeeActions";
-import { useStyles} from './Styles'
 
 function UpdateForm({ updateEmployee }) {
   const history = useHistory();
@@ -27,6 +28,21 @@ function UpdateForm({ updateEmployee }) {
   const [CPF, updateCPF] = useState(list.CPF);
   const [startDate, updateStartDate] = useState(list.startDate);
   const [team, updateTeam] = useState(list.team);
+
+
+  const searchEmployee = async(id) => {
+    try{
+      const result = await listEmployeesApi(listId)
+      console.log("RESULT UNIQUE USER:  " + JSON.stringify(result.data))
+    }catch(error){
+      console.log("API ERROR: " + error.messsage)
+    }
+  }
+
+  useEffect(() => {      
+    searchEmployee(listId)
+  }, []);
+
  
   const submitHandler = () => {
     const newList = {
